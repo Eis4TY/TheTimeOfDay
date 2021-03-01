@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>the time of day</title>
+    <style>
+        * {
+            margin: 0%;
+        }
+
+        body {
+            background-color: rgb(143, 148, 122);
+        }
+
+        .body1 {
+            position: fixed;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+
+            width: 80vw;
+            left: 50%;
+            top: 48.5%;
+            transform: translate(-50%, -50%);
+        }
+
+        .frame {
+            position: fixed;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+
+            width: 80vw;
+            left: 50%;
+            top: 48%;
+            transform: translate(-50%, -50%);
+        }
+
+        .morning {
+            text-align: center;
+            top: 50%;
+        }
+
+        .morningFrame {
+            text-align: center;
+            top: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+
+    <div class="body1">
+        <div class="morning">
+            <video id="morning" width=79.8% muted autoplay loop>
+                <source src="早上_x264.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="morning">
+            <video id="noon" width=79.8% muted autoplay loop>
+                <source src="中_x264.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="morning">
+            <video id="afternoon" width=79.8% muted autoplay loop>
+                <source src="下午_x264.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="morning">
+            <video id="night" width=79.8% muted autoplay loop>
+                <source src="晚上_x264.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="frame">
+        <div class="morningFrame">
+            <img src="早上.png" width=80%>
+        </div>
+
+        <div class="morningFrame">
+            <img src="中.png" width=80%>
+        </div>
+
+        <div class="morningFrame">
+            <img src="下午.png" width=80%>
+        </div>
+
+        <div class="morningFrame">
+            <img src="晚上.png" width=80%>
+        </div>
+
+    </div>
+
+    <script>
+        var morning = document.getElementById("morning");
+        var noon = document.getElementById("noon");
+        var afternoon = document.getElementById("afternoon");
+        var night = document.getElementById("night");
+        
+        //var time = 15;
+        var time = new Date().getHours();
+
+        setInterval('play();', 60000);
+        play();
+
+        function play() {
+            if (6 <= time && time < 11) {
+                morning.play();
+                noon.pause();
+                afternoon.pause();
+                night.pause();
+            } else if (11 <= time && time < 15) {
+                morning.pause();
+                noon.play();
+                afternoon.pause();
+                night.pause();
+            } else if (15 <= time && time < 20) {
+                morning.pause();
+                noon.pause();
+                afternoon.play();
+                night.pause();
+            } else if (20 <= time || time < 6) {
+                morning.pause();
+                noon.pause();
+                afternoon.pause();
+                night.play();
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
